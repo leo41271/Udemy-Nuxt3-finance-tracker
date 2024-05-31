@@ -36,7 +36,7 @@ const pending = ref(false)
 const { toastError } = useAppToast()
 // const toast = useToast()
 const supabase = useSupabaseClient()
-const redirectUrl = useRuntimeConfig().public.baseUrl
+const redirectUrl = useRuntimeConfig().public
 
 useRedirectIfAuthenticated()
 
@@ -46,8 +46,8 @@ const handleLogin = async () => {
         const { error } = await supabase.auth.signInWithOtp({
             email: email.value,
             options: {
-                // emailRedirectTo: `${redirectUrl}/confirm`
-                emailRedirectTo: `${redirectUrl}/confirm666`
+                emailRedirectTo: `${redirectUrl}/confirm`
+                // emailRedirectTo: `${redirectUrl}/confirm666` 404
             }
         })
         if (error) {
